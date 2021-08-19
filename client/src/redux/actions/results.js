@@ -6,9 +6,6 @@ import {
     FETCH_RESULTS,
     RESULTS_ERROR
 } from './types';
-import { getCategories } from './categories';
-
-import { getCategoriesFromResults } from './../../utils/resultsOperations';
 
 const config = {
     headers: {
