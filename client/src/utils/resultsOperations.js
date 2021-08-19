@@ -1,4 +1,7 @@
-// return list of categories after retrieving results
+/**
+ * @util    getCategoriesFromResults
+ * @description Reset state
+ **/
 exports.getCategoriesFromResults = (data) => {
     let categories = {};
     let categoriesArr = [];
