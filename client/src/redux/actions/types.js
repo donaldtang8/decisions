@@ -1,0 +1,6 @@
+// RESULTS
+export const RESET_RESULTS = 'RESET_RESULTS';
+export const GET_RESULTS = 'GET_RESULTS';
+export const GET_RESULT = 'GET_RESULT';
+export const FETCH_RESULTS = 'FETCH_RESULTS';
+export const RESULTS_ERROR = 'RESULTS_ERROR';
