@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
-}
+* {
+  margin: 0;
+  padding: 0; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+html {
+  margin: 0;
+  font-size: 62.5%; }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 100%; } }
+  @media only screen and (max-width: 112.5em) {
+    html {
+      font-size: 90%; } }
+  @media only screen and (max-width: 75rem) {
+    html {
+      font-size: 80%; } }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%; }
+
+.uppercase {
+  text-transform: uppercase; }
+
+.bold {
+  font-weight: bold; }
+
+.italic {
+  font-style: italic; }
+
+.spacing-small {
+  letter-spacing: 0.1rem; }
+
+.margin-small {
+  margin: 1rem; }
+
+.margin-medium {
+  margin: 2rem; }
+
+.center {
+  text-align: center; }
+
+.font-small {
+  font-size: 0.8rem; }
+
+.font-medium {
+  font-size: 1.25rem; }
+
+.font-big {
+  font-size: 1.5rem; }
+
+.font-large {
+  font-size: 1.8rem; }
+
+.padding-small {
+  padding: 1rem; }
+
+.heading-1 {
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+.heading-2 {
+  font-size: 1.5rem; }
+
+.heading-3 {
+  font-size: 1.2rem; }
+
+.hidden {
+  display: none; }
+
+.hidden {
+  display: none; }
+
+.main__container {
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  align-items: center; }

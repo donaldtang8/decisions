@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+}
+
+html {
+  // min-width: 32rem;
+  // width: 100%;
+
+  margin: 0;
+  font-size: 62.5%;
+
+  @include respond(big-desktop) {
+    font-size: 100%;
+  }
+
+  @include respond(med-desktop) {
+    font-size: 90%;
+  }
+
+  @include respond(tab-land) {
+    font-size: 80%;
+  }
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+
+  width: 100%;
+}
