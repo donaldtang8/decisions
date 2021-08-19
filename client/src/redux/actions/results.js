@@ -37,9 +37,6 @@ const config = {
         type: FETCH_RESULTS
       });
       const res = await axios.post('/api/yelp/business', body, config);
-      console.log(res.data);
-      let categories = getCategoriesFromResults(res.data.data);
-      dispatch(getCategories(categories));
       // dispatch action to update posts if results are returned
       dispatch({
         type: GET_RESULTS,

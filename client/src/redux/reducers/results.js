@@ -10,7 +10,6 @@ import {
     results: [],
     total: 0,
     result: null,
-    resultCategories: {},
     loading: false,
     errors: [],
 };

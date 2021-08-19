@@ -12,6 +12,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
+        <Switch>
+        </Switch>
       </div>
     </BrowserRouter>
   );
