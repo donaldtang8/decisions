@@ -1,0 +1,30 @@
+.result-item {
+    &__container {
+        margin: 1rem;
+        padding: 1rem;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-radius: var(--border-radius);
+
+        display: flex;
+    }
+
+    &__img {
+        img {
+            height: 5rem;
+            width: 5rem;
+            margin-right: 1rem;
+        }
+    }
+
+    &__details {
+        &--info,
+        &--services {
+            display: flex;
+
+            div:not(:last-child) {
+                margin-right: .5rem;
+            }
+        }
+    }
+}

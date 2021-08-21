@@ -10,6 +10,22 @@
 }
 
 :root {
+  --color-primary: #57b2fc;
+  --color-primary-hover: #6fbeff;
+  --color-secondary: #339DC7;
+  --color-success: #6cf3bf;
+  --color-fail: #ff9595;
+  --color-white: #f5f5f5e8;
+  --color-black: #000000;
+
+  --color-btn-primary: #57b2fc;
+  --color-btn-secondary: #339DC7;
+  --color-btn-primary-hover: #57b2fc;
+  --color-btn-secondary-hover: #339DC7;
+  --color-btn-next: #57b2fc;
+  --color-btn-back: #57b2fc;
+
+  --border-radius: 1rem;
 }
 
 html {
