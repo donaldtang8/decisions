@@ -22,5 +22,10 @@ exports.getCategoriesFromResults = (data) => {
     for (let catObj in categories) {
         categoriesArr.push(categories[catObj]);
     }
+    categoriesArr.sort((e1, e2) => {
+        if (e1.title > e2.title) return 1;
+        else if (e1.title < e2.title) return -1;
+        return 0;
+    });
     return categoriesArr;
 }

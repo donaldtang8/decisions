@@ -15,7 +15,8 @@
   --color-secondary: #339DC7;
   --color-success: #6cf3bf;
   --color-fail: #ff9595;
-  --color-white: #f5f5f5e8;
+  --color-offwhite: #f8f8f8e8;
+  --color-white: #ffffff;
   --color-black: #000000;
 
   --color-btn-primary: #57b2fc;
@@ -25,7 +26,12 @@
   --color-btn-next: #57b2fc;
   --color-btn-back: #57b2fc;
 
+  --color-grey-light: #E7E7E7;
+
+  --color-border-light: #eeeeef;
   --border-radius: 1rem;
+
+  --box-shadow-basic: 0 0 .5rem var(--color-border-light);
 }
 
 html {
