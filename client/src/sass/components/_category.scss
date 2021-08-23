@@ -1,19 +1,6 @@
 .category {
     &__item {
-        background-color: lightgrey;
-        padding: .5rem 1rem;
         margin-bottom: 1rem;
-        margin-right: 1rem;
-        border-radius: var(--border-radius);
-        @extend %no-select;
-
-        &--selected {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-        }
-    }
-
-    &__item:hover {
-        cursor: pointer;
+        margin-right: 1rem; 
     }
 }
