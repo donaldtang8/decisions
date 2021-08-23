@@ -24,10 +24,10 @@ const config = {
 }
 
 /**
- * @action    getResultsByFilters
- * @description Retrieve a list of results given an object with params with embedded params of filters
+ * @action    getResultsByParams
+ * @description Retrieve a list of results given an object with params with embedded params of params
  **/
- export const getResultsByFilters = (paramsData) => async (dispatch) => {
+ export const getResultsByParams = (paramsData) => async (dispatch) => {
     try {
       const body = JSON.stringify(paramsData);
       dispatch({

@@ -14,7 +14,7 @@ const CategoryItem = ({ category, selectCategoryAddCallback, selectCategoryRemov
     }
 
     return (
-        <div className={clicked ? 'category__item category__item--selected' : 'category__item'} onClick={handleClick}>
+        <div className={clicked ? 'category__item btn__select btn__select--selected' : 'category__item btn__select'} onClick={handleClick}>
             {category.title}
         </div>
     )
