@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Search from './pages/search/search';
+import Results from './pages/results/results';
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
       <div className='App'>
         <main className="main__container">
           <Switch>
+            <Route exact path='/results/:location/:term' component={Results} />
+            <Route exact path='/results/:location/:term/:categories' component={Results} />
+            <Route exact path='/results/:location/:term/:categories/:prices' component={Results} />
             <Route exact path='/' component={Search} />
           </Switch>
         </main>

@@ -21,10 +21,12 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
     useEffect(() => {
         if (step === 3) {
             let linkString = "";
-            linkString += "location=" + params.location;
-            linkString += "&term=" + params.term;
-            if (params.categories) linkString += "&categories=" + params.categories.toString();
-            if (params.price) linkString += "&price=" + params.price.toString();
+            const newLoc = params.location;
+            newLoc.replace(' ', '%20');
+            linkString += "location=" + newLoc;
+            linkString += "/term=" + params.term;
+            if (params.categories) linkString += "/categories=" + params.categories.toString();
+            if (params.price) linkString += "/price=" + params.price.toString();
             setResultsLink(linkString);
         }
     }, [step]);
@@ -47,7 +49,7 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
                 await getResultsByParams(params);
             }
         }
-        if (slideIdx >= 2) {
+        if (slideIdx > 2) {
             // reset selectedCategories array
             setSelectedCategories([]);
             delete params.categories;
@@ -178,7 +180,7 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
             {
                 step === 3 && (
                     <Fragment>
-                        <Link className="search__link" to={`/results?${resultsLink}`}>Full Results <i className="fas fa-arrow-right"></i></Link>
+                        <Link className="search__link" to={`/results/${resultsLink}`}>Full Results <i className="fas fa-arrow-right"></i></Link>
                         <div className="search__results">
                             {
                                 results.length > 0 
