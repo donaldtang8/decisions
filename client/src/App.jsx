@@ -7,6 +7,8 @@ import {
   BrowserRouter
 } from 'react-router-dom';
 
+import Header from './components/header/header';
+
 import Search from './pages/search/search';
 import Results from './pages/results/results';
 
@@ -14,6 +16,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='App'>
+        <Header />
         <main className="main__container">
           <Switch>
             <Route exact path='/results/:location/:term' component={Results} />

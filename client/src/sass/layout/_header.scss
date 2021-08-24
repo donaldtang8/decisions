@@ -1,0 +1,19 @@
+.header {
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem;
+        height: 7vh;
+    }
+
+    &__nav {
+        a:not(:last-child) {
+            margin-right: 1rem;
+        }
+
+        &--item {
+            font-size: 1.2rem;
+            font-weight: 700rem;
+        }
+    }
+}
