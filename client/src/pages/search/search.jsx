@@ -14,6 +14,8 @@ import Spinner from './../../components/spinner/spinner';
 
 import { getCategoriesFromResults } from './../../utils/resultsOperations';
 
+import MapContainer from './../../components/maps/map-container';
+
 const Search = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results: { results } }) => {
     // keeps track of which window we're at
     const [step, setStep] = useState(1);
@@ -81,7 +83,6 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
             getCategories(categoriesArr);
         }
         if (step === 2) {
-            console.log("Calculate random index");
             createRandomIndex();
         }
     }, [results]);
@@ -90,12 +91,10 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
     const[selectedCategories, setSelectedCategories] = useState([]);
 
     const handleCategorySelectAdd = (item) => {
-        console.log('Adding ' + item);
         setSelectedCategories([...selectedCategories, item]);
     };
 
     const handleCategorySelectRemove = (item) => {
-        console.log('Removing ' + item);
         setSelectedCategories(selectedCategories.filter(cat => cat !== item));
     }
 
@@ -183,8 +182,8 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
                         <Link className="search__link" to={`/results/${resultsLink}`}>Full Results <i className="fas fa-arrow-right"></i></Link>
                         <div className="search__results">
                             {
-                                results.length > 0 
-                                    ? <ResultItem result={results[randomIndex]} />
+                                randomIndex >= 0 
+                                    ? <ResultItem results={results} result={results[randomIndex]} index={randomIndex} mode='single' />
                                     : <div>No results</div>
                             }   
                         </div>
