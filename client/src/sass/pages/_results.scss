@@ -1,0 +1,90 @@
+.results {
+    &__container {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        width: 50%;
+    }
+
+    &__container:hover {
+        background-color: var(--color-offwhite);
+        cursor: pointer;
+    }
+
+    &__img {
+        img {
+            height: 10rem;
+            width: 10rem;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+    }
+
+    &__details {
+        margin-left: 1rem;
+
+        &--name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        &--categories {
+            display: flex;
+            flex-wrap: wrap;
+
+            &-item {
+                background-color: var(--color-grey-light);
+                margin: .5rem 0;
+                padding: .25rem 1rem;
+                font-weight: 500;
+                border-radius: 2rem;
+            }
+
+            &-item:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+
+        &--info,
+        &--services {
+            display: flex;
+            flex-wrap: wrap;
+            margin: .5rem 0;
+            font-size: 1rem;
+
+            div:not(:last-child) {
+                margin-right: .5rem;
+            }
+        }
+
+        &--price {
+            font-weight: 500;
+        }
+
+        &--hours,
+        &--service {
+            display: flex;
+            align-items: center;
+
+            i {
+                margin-right: 3px;
+            }
+        }
+
+        &--service {
+            text-transform: capitalize;
+        }
+    }
+
+    &__map {
+        margin-top: 1rem;
+        position: relative;
+        height: 17rem;
+    }
+}

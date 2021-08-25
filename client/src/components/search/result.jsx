@@ -1,12 +1,10 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import MapContainer from './../maps/map-container';
-
-const ResultItem = ({ results, result, index }) => {
+const Result = ({ results, result, index }) => {
     const { alias, name, image_url, is_closed, url, review_count, categories, rating, coordinates, transactions, price, location, phone, display_phone } = result;
 
-    const[transactionsArr, setTransactionsArr] = useState([]);
+    // const[transactionsArr, setTransactionsArr] = useState([]);
 
     // useEffect(() => {
     //     transactions.map(transaction => {
@@ -23,26 +21,26 @@ const ResultItem = ({ results, result, index }) => {
     // }, []);
     
     return (
-        <div className="result-item__container">
-            <div className="result-item__wrapper">
-                <div className="result-item__img">
+        <div className="result__container">
+            <div className="result__wrapper">
+                <div className="result__img">
                     <img src={image_url} alt={name} />
                 </div>
-                <div className="result-item__details">
-                    <div className="result-item__details--name">{name}</div>
-                    <div className="result-item__details--categories">
+                <div className="result__details">
+                    <div className="result__details--name">{name}</div>
+                    <div className="result__details--categories">
                         {
                             categories.map((category, idx) => (
-                                <div key={idx} className="result-item__details--categories-item">{category.title}</div>
+                                <div key={idx} className="result__details--categories-item">{category.title}</div>
                             ))
                         }
                     </div>
-                    <div className="result-item__details--info">
-                        <div className="result-item__details--rating"><i className="fas fa-star"></i> {rating} •    </div>
-                        <div className="result-item__details--price">{price}</div>
+                    <div className="result__details--info">
+                        <div className="result__details--rating"><i className="fas fa-star"></i> {rating} •    </div>
+                        <div className="result__details--price">{price}</div>
                     </div>
-                    <div className="result-item__details--services">
-                        <div className="result-item__details--hours">
+                    <div className="result__details--services">
+                        <div className="result__details--hours">
                             {
                                 !is_closed ? (
                                     <Fragment><i className="fas fa-check-circle"></i> Open</Fragment>
@@ -55,7 +53,7 @@ const ResultItem = ({ results, result, index }) => {
                             transactions.length > 0 && <Fragment>
                             {
                                 transactions.map((transaction, idx) => (
-                                    <div key={idx} className="result-item__details--service"><i className="fas fa-check-circle"></i> {transaction}</div>
+                                    <div key={idx} className="result__details--service"><i className="fas fa-check-circle"></i> {transaction}</div>
                                 ))
                             }
                             </Fragment>
@@ -63,16 +61,12 @@ const ResultItem = ({ results, result, index }) => {
                     </div>
                 </div>
             </div>
-            <div className="result-item__map">
-                <MapContainer results={results} result={results[index]} mode='single' />
-            </div>
         </div>
     )
 }
 
-ResultItem.propTypes = {
-    results: PropTypes.array.isRequired,
+Result.propTypes = {
     result: PropTypes.object.isRequired,
 }
 
-export default ResultItem;
+export default Result;

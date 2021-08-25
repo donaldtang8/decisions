@@ -10,9 +10,10 @@ import { resetCategories, getCategories } from '../../redux/actions/categories';
 
 import { getCategoriesFromResults } from './../../utils/resultsOperations';
 
-import ResultItem from './../../components/search/result-item';
+import Result from './../../components/search/result';
 import Spinner from './../../components/spinner/spinner';
 
+import MapContainer from './../../components/maps/map-container';
 
 const Results = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results, match }) => {
     const[params, setParams] = useState({
@@ -20,7 +21,6 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
 
     useEffect(() => {
         async function setParamsAndGetResults() {
-            console.log(match.params);
             if (match.params.location) {
                 params['location'] = match.params.location.split('=')[1];
             }
@@ -40,16 +40,20 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
 
     return (
         <div className="results__container">
-            {
-                results.loading 
-                    ? <Spinner />
-                    : (
-                        results.results.map((result, idx) => (
-                            <ResultItem key={idx} result={result} />
-                        ))
-                    )
-            }
+            <div className="results__wrapper">
+                {
+                    results.loading 
+                        ? <Spinner />
+                        : (
+                            results.results.map((result, idx) => (
+                                <Result key={idx} result={result} />
+                            ))
+                        )
+                }
+            </div>
+            <MapContainer results={results.results} mode='multiple' />
         </div>
+        
     )
 }
 
