@@ -14,8 +14,6 @@ import Spinner from './../../components/spinner/spinner';
 
 import { getCategoriesFromResults } from './../../utils/resultsOperations';
 
-import MapContainer from './../../components/maps/map-container';
-
 const Search = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results: { results } }) => {
     // keeps track of which window we're at
     const [step, setStep] = useState(1);
@@ -32,6 +30,12 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
             setResultsLink(linkString);
         }
     }, [step]);
+
+    useEffect(() => {
+        return() => {
+            setStep(1);
+        }
+    }, []);
 
     const handleSlideChange = async (slideIdx, direction) => {
         if (slideIdx === 1) {

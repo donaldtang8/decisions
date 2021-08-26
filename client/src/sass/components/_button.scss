@@ -11,6 +11,11 @@
     &__primary {
         background-color: var(--color-btn-primary);
         color: var(--color-white);
+
+        &--small {
+            padding: .5rem 1rem;
+            font-size: .85rem;
+        }
     }
 
     &__primary:hover {

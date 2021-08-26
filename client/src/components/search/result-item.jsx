@@ -38,8 +38,8 @@ const ResultItem = ({ results, result, index }) => {
                         }
                     </div>
                     <div className="result-item__details--info">
-                        <div className="result-item__details--rating"><i className="fas fa-star"></i> {rating} •    </div>
-                        <div className="result-item__details--price">{price}</div>
+                        <div className="result-item__details--rating"><i className="fas fa-star"></i> {rating} </div>
+                        <div className="result-item__details--price"> • {price}</div>
                     </div>
                     <div className="result-item__details--services">
                         <div className="result-item__details--hours">
