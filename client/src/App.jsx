@@ -12,6 +12,8 @@ import Header from './components/header/header';
 import Search from './pages/search/search';
 import Results from './pages/results/results';
 
+import MapTest from './components/maps/map-test';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,6 +21,7 @@ const App = () => {
         <Header />
         <main className="main__container">
           <Switch>
+            <Route exact path='/map' component={MapTest} />
             <Route exact path='/results/:location/:term' component={Results} />
             <Route exact path='/results/:location/:term/:categories' component={Results} />
             <Route exact path='/results/:location/:term/:categories/:prices' component={Results} />

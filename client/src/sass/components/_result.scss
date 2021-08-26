@@ -96,17 +96,16 @@
         width: 100%;
     }
 
-    &__wrapper {
-        padding: 2rem;
-        background-color: var(--color-white);
-        color: var(--color-black);
-        border: 1px solid var(--color-border-light);
-        box-shadow: var(--box-shadow-basic);
-    }
-
     &__container:hover {
         background-color: var(--color-offwhite);
         cursor: pointer;
+    }
+
+    &__wrapper {
+        padding: 2rem;
+        color: var(--color-black);
+        border: 1px solid var(--color-border-light);
+        box-shadow: var(--box-shadow-basic);
     }
 
     &__wrapper {
@@ -176,11 +175,5 @@
         &--service {
             text-transform: capitalize;
         }
-    }
-
-    &__map {
-        margin-top: 1rem;
-        position: relative;
-        height: 17rem;
     }
 }
