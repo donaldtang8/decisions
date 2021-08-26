@@ -13,13 +13,18 @@
         z-index: 99;
     }
 
+    &__logo {
+        font-size: 1.35rem;
+        font-weight: 700;
+    }
+
     &__nav {
         a:not(:last-child) {
             margin-right: 1rem;
         }
 
         &--item {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700rem;
         }
     }

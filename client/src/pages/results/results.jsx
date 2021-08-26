@@ -58,7 +58,7 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
         }
     }
 
-    return (
+    return results.loading ? <Spinner /> : (
         <div className="results__container">
             <div className="results__query">
                 <div className="results__filters">
@@ -80,25 +80,18 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
                         </div>
                     </div>
                 </div>
-                <button className="btn btn__primary" onClick={handleQuerySubmit}>Apply</button>
+                <button className="btn btn__primary btn__primary--small" onClick={handleQuerySubmit}>Apply</button>
             </div>
             <div className="results__wrapper">
                 {
-                    results.loading
-                        ? <Spinner />
-                        : (
-                            results.results.map((result, idx) => (
-                                <Result key={idx} result={result} index={idx} />
-                            ))
-                        )
+                    results.results.map((result, idx) => (
+                        <Result key={idx} result={result} index={idx} />
+                    ))
                 }
             </div>
-            {
-                !results.loading && 
-                <div className="results__map">
-                    <MapContainer results={results.results} mode='multiple' />
-                </div>
-            }    
+            <div className="results__map">
+                <MapContainer results={results.results} mode='multiple' />
+            </div>   
         </div>
         
     )

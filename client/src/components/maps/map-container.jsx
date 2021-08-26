@@ -107,7 +107,7 @@ export class MapContainer extends React.Component {
                 const marker = new maps.Marker({
                     position: position,
                     map,
-                    label: i.toString(),
+                    label: {text: i.toString(), color: "white"},
                     title: result.name
                 });
                 marker.addListener("click", () => {
