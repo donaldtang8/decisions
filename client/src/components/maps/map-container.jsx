@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 // Map does not center when updating single location
@@ -15,6 +16,7 @@ export class MapContainer extends React.Component {
 
     componentDidMount() {
         console.log("Map mounted");
+        console.log(this.props);
         this.loadMap();
     }
 
@@ -24,6 +26,17 @@ export class MapContainer extends React.Component {
                 this.removeMarkers();
                 this.updateMarker();
                 this.recenterMap();
+            }
+        }
+        if (this.props && this.props.mapsRedux !== prevProps.mapsRedux) {
+            if (this.map) {
+                const { selectedMarker } = this.props.mapsRedux;
+                if (selectedMarker !== null) {
+                    this.hideAllMarkers();
+                    this.showMarker(this.props.mapsRedux.selectedMarker, this.map);
+                } else {
+                    this.showAllMarkers(this.map);
+                }
             }
         }
     }
@@ -168,8 +181,22 @@ export class MapContainer extends React.Component {
 
     }
 
+    showAllMarkers(map) {
+        for (let marker of this.state.markers) {
+            marker.setMap(map);
+        }
+    }
+
+    showMarker(i, map) {
+        this.state.markers[i].setMap(map);
+    }
+
+    hideAllMarkers() {
+        this.showAllMarkers(null);
+    }
+
     recenterMap() {
-        console.log("recentering map");
+        console.log("Recentering map");
         const map = this.map;
         const curr = { lat: this.props.result.coordinates.latitude, lng: this.props.result.coordinates.longitude};
 
@@ -190,6 +217,10 @@ export class MapContainer extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    mapsRedux: state.maps
+})
+
 export default GoogleApiWrapper({
     apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-})(MapContainer)
+})(connect(mapStateToProps, { })(MapContainer))
