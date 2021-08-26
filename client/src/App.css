@@ -146,8 +146,13 @@ a:visited {
   top: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 2rem;
-  height: 7vh; }
+  height: 7vh;
+  -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  z-index: 99; }
 
 .header__nav a:not(:last-child) {
   margin-right: 1rem; }
@@ -312,7 +317,7 @@ a:visited {
 .result__details {
   margin-left: 1rem; }
   .result__details--name {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700; }
   .result__details--categories {
     display: flex;
@@ -321,6 +326,7 @@ a:visited {
       background-color: var(--color-grey-light);
       margin: .5rem 0;
       padding: .25rem 1rem;
+      font-size: .9rem;
       font-weight: 500;
       border-radius: 2rem; }
     .result__details--categories-item:not(:last-child) {
@@ -329,7 +335,7 @@ a:visited {
     display: flex;
     flex-wrap: wrap;
     margin: .5rem 0;
-    font-size: 1rem; }
+    font-size: .9rem; }
     .result__details--info div:not(:last-child), .result__details--services div:not(:last-child) {
       margin-right: .5rem; }
   .result__details--price {
@@ -406,52 +412,30 @@ a:visited {
   display: flex;
   overflow-y: scroll; }
 
+.results__query {
+  width: 15%;
+  padding: 2rem;
+  position: sticky;
+  top: 0;
+  left: 0; }
+
+.results__sort {
+  display: flex;
+  flex-direction: column; }
+  .results__sort--items {
+    display: flex;
+    flex-direction: column; }
+  .results__sort--item {
+    display: flex;
+    align-items: center; }
+
 .results__wrapper {
   display: flex;
   flex-direction: column;
-  width: 50%; }
-
-.results__img img {
-  height: 10rem;
-  width: 10rem;
-  object-fit: cover;
-  margin-right: 1rem; }
-
-.results__details {
-  margin-left: 1rem; }
-  .results__details--name {
-    font-size: 1.5rem;
-    font-weight: 700; }
-  .results__details--categories {
-    display: flex;
-    flex-wrap: wrap; }
-    .results__details--categories-item {
-      background-color: var(--color-grey-light);
-      margin: .5rem 0;
-      padding: .25rem 1rem;
-      font-weight: 500;
-      border-radius: 2rem; }
-    .results__details--categories-item:not(:last-child) {
-      margin-right: 1rem; }
-  .results__details--info, .results__details--services {
-    display: flex;
-    flex-wrap: wrap;
-    margin: .5rem 0;
-    font-size: 1rem; }
-    .results__details--info div:not(:last-child), .results__details--services div:not(:last-child) {
-      margin-right: .5rem; }
-  .results__details--price {
-    font-weight: 500; }
-  .results__details--hours, .results__details--service {
-    display: flex;
-    align-items: center; }
-    .results__details--hours i, .results__details--service i {
-      margin-right: 3px; }
-  .results__details--service {
-    text-transform: capitalize; }
+  width: 45%; }
 
 .results__map {
-  width: 50%;
+  width: 40%;
   position: sticky;
   top: 0;
   right: 0; }

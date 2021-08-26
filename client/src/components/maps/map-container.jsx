@@ -49,7 +49,6 @@ export class MapContainer extends React.Component {
             } 
             else {
                 console.log("Loading map for multiple");
-                console.log(results);
                 const zoom = 14;
                 mapConfig = Object.assign({}, {
                     center: { lat: results[0].coordinates.latitude, lng: results[0].coordinates.longitude },
