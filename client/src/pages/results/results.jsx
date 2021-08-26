@@ -42,16 +42,21 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
         <div className="results__container">
             <div className="results__wrapper">
                 {
-                    results.loading 
+                    results.loading
                         ? <Spinner />
                         : (
                             results.results.map((result, idx) => (
-                                <Result key={idx} result={result} />
+                                <Result key={idx} result={result} index={idx} />
                             ))
                         )
                 }
             </div>
-            <MapContainer results={results.results} mode='multiple' />
+            {
+                !results.loading && 
+                <div className="results__map">
+                    <MapContainer results={results.results} mode='multiple' />
+                </div>
+            }    
         </div>
         
     )

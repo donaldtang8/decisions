@@ -1,0 +1,16 @@
+.map {
+    &__container {
+        &--single {
+            height: 17rem;
+        }
+        
+        &--multiple {
+            height: 93vh;
+        }
+    }
+
+    &__test {
+        height: 150vh;
+        background-color: skyblue;
+    }
+}

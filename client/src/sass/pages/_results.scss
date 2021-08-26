@@ -1,20 +1,17 @@
 .results {
     &__container {
+        position: relative;
+        height: 93vh;
         width: 100%;
-        padding: 2rem;
+        padding: 0 0 0 1rem;
         display: flex;
+        overflow-y: scroll;
     }
 
     &__wrapper {
         display: flex;
         flex-direction: column;
-        overflow: auto;
         width: 50%;
-    }
-
-    &__container:hover {
-        background-color: var(--color-offwhite);
-        cursor: pointer;
     }
 
     &__img {
@@ -83,8 +80,9 @@
     }
 
     &__map {
-        margin-top: 1rem;
-        position: relative;
-        height: 17rem;
+        width: 50%;
+        position: sticky;
+        top: 0;
+        right: 0;
     }
 }
