@@ -149,9 +149,9 @@ a:visited {
   align-items: center;
   padding: 2rem;
   height: 7vh;
-  -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-  -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-  box-shadow: 0 0 0 4px white, 0 6px 4px black;
+  -webkit-box-shadow: 0 0 0 2px white, 0 3px 2px black;
+  -moz-box-shadow: 0 0 0 2px white, 0 3px 2px black;
+  box-shadow: 0 0 0 2px white, 0 3px 2px black;
   z-index: 99; }
 
 .header__logo {
