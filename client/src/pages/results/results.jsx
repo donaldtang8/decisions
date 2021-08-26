@@ -38,8 +38,50 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
         setParamsAndGetResults();
     }, []);
 
+    const handleSortClick = e => {
+        setParams({ ...params, sort_by: e.target.value });
+    }
+
+    const handleQuerySubmit = e => {
+        e.preventDefault();
+        getResultsByParams(params);
+        delete params.sort_by;
+        clearRadioButtons('sort');
+    }
+
+    const clearRadioButtons = (type) => {
+        if (type === 'sort') {
+            const sortButtons = document.getElementsByName('radio-sort');
+            for (let button of sortButtons) {
+                button.checked = false;
+            }
+        }
+    }
+
     return (
         <div className="results__container">
+            <div className="results__query">
+                <div className="results__filters">
+                </div>
+                <div className="results__sort">
+                    <div className="results__sort--title">Sort By:</div>
+                    <div className="results__sort--items">
+                        <div className="results__sort--item">
+                            <input type="radio" id="radio-rating" name="radio-sort" value="rating" onClick={handleSortClick} />
+                            <label for="radio-rating">Rating</label>
+                        </div>
+                        <div className="results__sort--item">
+                            <input type="radio" id="radio-review-count" name="radio-sort" value="review_count" onClick={handleSortClick} />
+                            <label for="radio-review-count">Review Count</label>
+                        </div>
+                        <div className="results__sort--item">
+                            <input type="radio" id="radio-distance" name="radio-sort" value="distance" onClick={handleSortClick} />
+                            <label for="radio-distance">Distance</label>
+                        </div>
+                    </div>
+                </div>
+                <button className="btn btn__primary" onClick={handleQuerySubmit}>Apply</button>
+            </div>
             <div className="results__wrapper">
                 {
                     results.loading
