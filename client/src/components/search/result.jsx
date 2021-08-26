@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const Result = ({ results, result, index }) => {
+const Result = ({ result, index }) => {
     const { alias, name, image_url, is_closed, url, review_count, categories, rating, coordinates, transactions, price, location, phone, display_phone } = result;
 
     // const[transactionsArr, setTransactionsArr] = useState([]);
@@ -21,13 +21,14 @@ const Result = ({ results, result, index }) => {
     // }, []);
     
     return (
+        <a href={url} target="_blank" rel="noopener">
         <div className="result__container">
             <div className="result__wrapper">
                 <div className="result__img">
                     <img src={image_url} alt={name} />
                 </div>
                 <div className="result__details">
-                    <div className="result__details--name">{name}</div>
+                    <div className="result__details--name">{index+1}. {name}</div>
                     <div className="result__details--categories">
                         {
                             categories.map((category, idx) => (
@@ -62,6 +63,7 @@ const Result = ({ results, result, index }) => {
                 </div>
             </div>
         </div>
+        </a>
     )
 }
 
