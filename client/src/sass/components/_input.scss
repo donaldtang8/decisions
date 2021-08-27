@@ -1,0 +1,35 @@
+input[type="text"],
+select {
+  border: none;
+  height: 4rem;
+  margin: 0;
+  outline: 0;
+  background-color: var(--color-input-background);
+  color: var(--color-input-text);
+  box-shadow: var(--box-shadow-input);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+.input {
+    &__text {
+        font-size: 1rem;
+        padding: 1rem;
+        width: 25rem;
+    }
+
+    &__select {
+        font-size: 1rem;
+        padding: 1.25rem;
+        width: 15rem;
+        color: var(--color-black);
+    }
+
+    &__label {
+        @extend %skinny;
+        margin-bottom: .5rem;
+    }
+}

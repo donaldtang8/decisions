@@ -10,9 +10,9 @@ import {
 import Header from './components/header/header';
 
 import Search from './pages/search/search';
+import SearchFilters from './pages/search/search-filter';
+import SearchResult from './pages/search/search-result';
 import Results from './pages/results/results';
-
-import MapTest from './components/maps/map-test';
 
 const App = () => {
   return (
@@ -21,10 +21,9 @@ const App = () => {
         <Header />
         <main className="main__container">
           <Switch>
-            <Route exact path='/map' component={MapTest} />
-            <Route exact path='/results/:location/:term' component={Results} />
-            <Route exact path='/results/:location/:term/:categories' component={Results} />
-            <Route exact path='/results/:location/:term/:categories/:prices' component={Results} />
+            <Route exact path='/results' component={Results} />
+            <Route exact path='/result' component={SearchResult} />
+            <Route exact path='/search' component={SearchFilters} />
             <Route exact path='/' component={Search} />
           </Switch>
         </main>

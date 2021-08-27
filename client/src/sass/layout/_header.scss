@@ -1,31 +1,35 @@
 .header {
     &__container {
+        @extend %display;
         position: sticky;
         top: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 2rem;
+        padding: 2rem 5rem;
         height: 7vh;
-        -webkit-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-        -moz-box-shadow: 0 0 0 4px white, 0 6px 4px black;
-        box-shadow: 0 0 0 4px white, 0 6px 4px black;
         z-index: 99;
     }
 
     &__logo {
-        font-size: 1.35rem;
-        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--color-primary);
+        @extend %big-cursive;
     }
 
     &__nav {
+        margin-right: 3rem;
         a:not(:last-child) {
             margin-right: 1rem;
         }
 
         &--item {
             font-size: 1rem;
-            font-weight: 700rem;
+            font-weight: 700;
+        }
+
+        &--item:hover {
+            color: var(--color-primary);
         }
     }
 }

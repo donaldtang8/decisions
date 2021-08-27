@@ -1,20 +1,25 @@
 .btn {
-    padding: 1rem 2rem;
+    @extend %display;
     border: none;
     width: min-content;
     white-space: nowrap;
     border-radius: var(--border-radius);
-    color: var(--color-white);
-    font-size: 1rem;
-    font-weight: 600;
 
     &__primary {
         background-color: var(--color-btn-primary);
         color: var(--color-white);
+        padding: .75rem 1.5rem;
+        font-size: .95rem;
+        font-weight: 700;
 
         &--small {
             padding: .5rem 1rem;
             font-size: .85rem;
+        }
+
+        &--big {
+            padding: 1rem 2rem;
+            font-size: 1rem;
         }
     }
 
@@ -55,8 +60,7 @@
     }
 
     &__select {
-        background-color: var(--color-white);
-        border: 1px solid var(--color-primary);
+        background-color: var(--color-input-background);
         padding: 1rem;
         border-radius: var(--border-radius);
         line-height: 1;

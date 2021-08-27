@@ -1,67 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 
-import { Link } from 'react-router-dom'
-
-import { getResultsByParams } from '../../redux/actions/results';
-import { resetCategories, getCategories } from '../../redux/actions/categories';
-
-import ResultItem from './../../components/search/result-item';
-import CategoryItem from './../../components/categories/category-item';
-import Spinner from './../../components/spinner/spinner';
-
-import { getCategoriesFromResults } from './../../utils/resultsOperations';
-
-const Search = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results: { results } }) => {
-    // keeps track of which window we're at
-    const [step, setStep] = useState(1);
-
-    useEffect(() => {
-        if (step === 3) {
-            let linkString = "";
-            const newLoc = params.location;
-            newLoc.replace(' ', '%20');
-            linkString += "location=" + newLoc;
-            linkString += "/term=" + params.term;
-            if (params.categories) linkString += "/categories=" + params.categories.toString();
-            if (params.price) linkString += "/price=" + params.price.toString();
-            setResultsLink(linkString);
-        }
-    }, [step]);
-
-    useEffect(() => {
-        return() => {
-            setStep(1);
-        }
-    }, []);
-
-    const handleSlideChange = async (slideIdx, direction) => {
-        if (slideIdx === 1) {
-            if (params.location.length > 0 && params.term.length > 0) {
-                await getResultsByParams(params);
-            }
-        }
-        if (slideIdx === 2) {
-            if (direction === 'back') resetCategories();
-            else {
-                if (selectedCategories.length > 0) {
-                    params['categories'] = selectedCategories.toString();
-                }
-                if (selectedPrices.length > 0) {
-                    params['price'] = selectedPrices.toString();
-                }
-                await getResultsByParams(params);
-            }
-        }
-        if (slideIdx > 2) {
-            // reset selectedCategories array
-            setSelectedCategories([]);
-            delete params.categories;
-        }
-        await setStep(direction === 'back' ? step - 1 : step + 1);
-    }
+const Search = ({  history }) => {
 
     // object containing possible params to include in url query string to use in filter
     const[params, setParams] = useState({
@@ -80,138 +21,45 @@ const Search = ({ getResultsByParams, resetCategories, getCategories, categories
         setParams({ ...params, term: e.target.value });
     }
 
-    // retrieve categories from results
-    useEffect(() => {
-        if (step === 1) {
-            const categoriesArr = getCategoriesFromResults(results);
-            getCategories(categoriesArr);
-        }
-        if (step === 2) {
-            createRandomIndex();
-        }
-    }, [results]);
-
-    // create category elements
-    const[selectedCategories, setSelectedCategories] = useState([]);
-
-    const handleCategorySelectAdd = (item) => {
-        setSelectedCategories([...selectedCategories, item]);
-    };
-
-    const handleCategorySelectRemove = (item) => {
-        setSelectedCategories(selectedCategories.filter(cat => cat !== item));
+    // when search is clicked, we build the link string and navigate to the search filters page
+    const handleSearch = () => {
+        const link = `/search?location=${params.location}&term=${params.term}`;
+        history.push(link);
     }
-
-    const[selectedPrices, setSelectedPrices] = useState([]);
-
-    const handlePriceChange = (e) => {
-        const value = e.target.dataset.price;
-        if (selectedPrices.indexOf(value) > -1) {
-            setSelectedPrices(selectedPrices.filter(price => price !== value));
-            e.target.classList.remove("search__prices--price-selected", "btn__select--selected");
-        } else {
-            setSelectedPrices([...selectedPrices, value]);
-            e.target.classList.add("search__prices--price-selected", "btn__select--selected");
-        }
-    }
-
-    const[randomIndex, setRandomIndex] = useState(0);
-    const createRandomIndex = () => {
-        const randomNum = Math.floor(Math.random() * (results.length-1));
-        setRandomIndex(randomNum);
-    }
-
-    const[resultsLink, setResultsLink] = useState("");
 
     return (
         <div className='search__container'>
-            <div className={`search__slide search__slide--${step}`}>
-            {
-                step === 1 && (
-                    <Fragment>
-                        <div className="search__form">
-                            <input 
-                                type='text'
-                                className='input__text'
-                                placeholder='Address, Area, City, Zip Code'
-                                value={params.location && params.location}
-                                onChange={handleLocationChange}
-                            />
-                            <select
-                                className='input__select'
-                                onChange={handleSelectChange}
-                            >
-                                <option value='restaurant'>Restaurants</option>
-                                <option value='events'>Events</option>
-                            </select>
-                        </div>
-                        <div className="search__buttons">
-                            <button className="btn btn__primary center-elem" onClick={() => handleSlideChange(1, 'next')}>Search</button>
-                        </div>
-                    </Fragment>
-                )
-            }
-            {
-                step === 2 && (
-                    <Fragment>
-                        <div className="search__filters">
-                            <div className="search__filters--title">Pick Categories</div>
-                            <div className="search__categories">
-                                {categories.map((category, idx) => (
-                                    <CategoryItem
-                                        key={idx}
-                                        category={category} 
-                                        selectCategoryAddCallback={handleCategorySelectAdd}
-                                        selectCategoryRemoveCallback={handleCategorySelectRemove} />
-                                ))}
-                            </div>
-                            <div className="search__filters--title">Pick Price Level</div>
-                            <div className="search__prices">
-                                    <div className="search__prices--price btn__select" data-price="1" onClick={handlePriceChange}>$</div>
-                                    <div className="search__prices--price btn__select" data-price="2" onClick={handlePriceChange}>$$</div>
-                                    <div className="search__prices--price btn__select" data-price="3" onClick={handlePriceChange}>$$$</div>
-                                    <div className="search__prices--price btn__select" data-price="4" onClick={handlePriceChange}>$$$$</div>
-                            </div>
-                        </div>
-                        <div className="search__buttons">
-                            <button className="btn btn__primary" onClick={() => handleSlideChange(2, 'back')}>Back</button>
-                            <button className="btn btn__primary" onClick={() => handleSlideChange(2, 'next')}>Search</button>
-                        </div>
-                    </Fragment>
-                )
-            }
-            {
-                step === 3 && (
-                    <Fragment>
-                        <Link className="search__link" to={`/results/${resultsLink}`}>Full Results <i className="fas fa-arrow-right"></i></Link>
-                        <div className="search__results">
-                            {
-                                randomIndex >= 0 
-                                    ? <ResultItem results={results} result={results[randomIndex]} index={randomIndex} mode='single' />
-                                    : <div>No results</div>
-                            }   
-                        </div>
-                        <div className="search__buttons">
-                            <button className="btn btn__primary" onClick={() => handleSlideChange(3, 'back')}>Back</button>
-                            <button className="btn btn__primary" onClick={createRandomIndex}>Randomize</button>
-                        </div>
-                    </Fragment>
-                )
-            }
+            <div className='search__slide'>
+                <div className="search__form">
+                    <div className="search__input--group">
+                        <label className="input__label" htmlFor='input-text-address'>Your Location:</label>
+                        <input 
+                            type='text'
+                            className='input__text'
+                            id='input-text-address'
+                            placeholder='Address, City, Zip Code'
+                            value={params.location && params.location}
+                            onChange={handleLocationChange}
+                        />
+                    </div>
+                    <div className="search__input--group">
+                        <label className="input__label" htmlFor='input-select-type'>Find:</label>
+                        <select
+                            className='input__select'
+                            id='input-select-type'
+                            onChange={handleSelectChange}
+                        >
+                            <option value='restaurant'>Restaurants</option>
+                            <option value='events'>Events</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="search__buttons">
+                    <button className="btn btn__primary btn__primary--big center-elem" onClick={handleSearch}><i className="fas fa-search"></i> Search</button>
+                </div>
             </div>
         </div>
     )
 }
 
-Search.propTypes = {
-    getResultsByParams: PropTypes.func.isRequired,
-    resetCategories: PropTypes.func.isRequired,
-    getCategories: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-    results: state.results,
-    categories: state.categories
-})
-
-export default connect(mapStateToProps, { getResultsByParams, resetCategories, getCategories })(Search);
+export default withRouter(Search);
