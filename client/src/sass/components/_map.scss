@@ -1,5 +1,7 @@
 .map {
     &__container {
+        position: relative;
+        overflow: hideen;
         &--single {
             height: 17rem;
         }

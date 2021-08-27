@@ -179,3 +179,73 @@
         }
     }
 }
+
+@include respond(med-desktop) {
+    .result {
+        &-item {
+            &__img img {
+                height: 10rem;
+                width: 10rem;
+            }
+        }
+    }
+}
+
+@include respond(tab-land) {
+    .result {
+        &-item {
+            &__img img {
+                height: 12rem;
+                width: 12rem;
+            }
+        }
+    }
+}
+
+@include respond(tab-port) {
+    .result {
+        &-item {
+            &__img img {
+                height: 11rem;
+                width: 11rem;
+            }
+        }
+
+        &__img img {
+            height: 8rem;
+            width: 8rem;
+            margin-right: 0rem;
+        }
+    }
+}
+
+@include respond(large-phone) {
+    .result {
+        &__wrapper {
+            padding: 1rem;
+        }
+
+        &__img img {
+            height: 6rem;
+            width: 6rem;
+        }
+
+        &__details {
+            &--name {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+@include respond(phone) {
+    .result {
+        &-item {
+            &__img img {
+                height: 9rem;
+                width: 9rem;
+                margin-right: .25rem;
+            }
+        }
+    }
+}
