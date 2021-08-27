@@ -57,16 +57,13 @@ body {
   to {
     -webkit-transform: rotate(360deg); } }
 
-.header__container, .btn, .search__filters--title {
+.header__container, .btn, .input__label, .search__filters--title {
   font-family: "Dosis", sans-serif;
   font-weight: 400; }
 
-body {
+body, input[type="text"],
+select, ::placeholder {
   font-family: "Josefin Sans", sans-serif;
-  font-weight: 400; }
-
-.input__label {
-  font-family: "Roboto Condensed", sans-serif;
   font-weight: 400; }
 
 .header__logo {
@@ -280,6 +277,7 @@ input[type="checkbox"] {
   color: var(--color-black); }
 
 .input__label {
+  font-weight: 600;
   margin-bottom: .5rem; }
 
 .category__item {
@@ -414,6 +412,33 @@ input[type="checkbox"] {
 .map__test {
   height: 150vh;
   background-color: skyblue; }
+
+.pagination__container {
+  margin: 1rem auto;
+  padding-bottom: 1rem;
+  display: flex;
+  list-style: none;
+  outline: none; }
+  .pagination__container .active > a {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white); }
+  .pagination__container .active > a, .pagination__container .pagination > .active > span, .pagination__container .pagination > .active > a:hover, .pagination__container .pagination > .active > span:hover, .pagination__container .pagination > .active > a:focus, .pagination__container .pagination > .active > span:focus {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    outline: none; }
+  .pagination__container li > a {
+    border: 1px solid var(--color-primary);
+    padding: .5rem 1rem;
+    outline: none;
+    cursor: pointer; }
+  .pagination__container li > a:hover, .pagination__container .pagination > .active > span, .pagination__container .pagination > .active > a:hover, .pagination__container .pagination > .active > span:hover, .pagination__container .pagination > .active > a:focus, .pagination__container .pagination > .active > span {
+    background-color: var(--color-primary);
+    color: var(--color-white); }
+  .pagination__container li > a, .pagination__container .pagination > li > span {
+    color: var(--color-primary); }
+  .pagination__container li:first-child > a, .pagination__container .pagination > li:first-child > span, .pagination__container .pagination > li:last-child > a, .pagination__container .pagination > li:last-child > span {
+    border-radius: unset; }
 
 .search__container {
   width: 75%;
