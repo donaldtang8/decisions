@@ -1,6 +1,6 @@
 # :bowl_with_spoon: activity-suggestion
 
-Front end web application to suggest places to eat or events to attend based on your location using the yelp API.
+Front end web application to suggest places to eat or events to attend based on your location, randomize your choices and display it on a map.
 
 ## Built With
 
@@ -11,6 +11,7 @@ Front end web application to suggest places to eat or events to attend based on 
 * React Hooks
 * SASS
 * Yelp API
+* Google Maps API
 
 
 ## Project setup:
