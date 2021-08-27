@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -8,34 +8,31 @@ import { withRouter, useLocation } from 'react-router-dom';
 import { getResultsByParams } from '../../redux/actions/results';
 import { resetCategories, getCategories } from '../../redux/actions/categories';
 
-import { getCategoriesFromResults } from './../../utils/resultsOperations';
-
 import Result from './../../components/search/result';
 import Spinner from './../../components/spinner/spinner';
 
 import MapContainer from './../../components/maps/map-container';
 
-const Results = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results, match }) => {
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
+const Results = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results, history }) => {
+    let query = useQuery();
+
     const[params, setParams] = useState({
-    })
+        limit: 50,
+        location: query.get("location"),
+        term: query.get("term"),
+    });
 
     useEffect(() => {
-        async function setParamsAndGetResults() {
-            if (match.params.location) {
-                params['location'] = match.params.location.split('=')[1];
-            }
-            if (match.params.term) {
-                params['term'] = match.params.term.split('=')[1];
-            }
-            if (match.params.categories) {
-                params['categories'] = match.params.categories.split('=')[1];
-            }
-            if (match.params.prices) {
-                params['prices'] = match.params.prices.split('=')[1];
-            }
+        if (query.get("categories")) params['categories'] = query.get("categories");
+        if (query.get("prices")) params['prices'] = query.get("prices");
+        async function getResults() {
             await getResultsByParams(params);
         }
-        setParamsAndGetResults();
+        getResults();
     }, []);
 
     const handleSortClick = e => {
@@ -99,8 +96,6 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
 
 Results.propTypes = {
     getResultsByParams: PropTypes.func.isRequired,
-    resetCategories: PropTypes.func.isRequired,
-    getCategories: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

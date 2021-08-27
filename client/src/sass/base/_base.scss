@@ -10,8 +10,8 @@
 }
 
 :root {
-  --color-primary: #57b2fc;
-  --color-primary-hover: #6fbeff;
+  --color-primary: #808EFF;
+  --color-primary-hover: #808EFF;
   --color-secondary: #339DC7;
   --color-success: #6cf3bf;
   --color-fail: #ff9595;
@@ -19,19 +19,25 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-btn-primary: #57b2fc;
+  --color-btn-primary: #808EFF;
   --color-btn-secondary: #339DC7;
-  --color-btn-primary-hover: #57b2fc;
+  --color-btn-primary-hover: #929beb;
   --color-btn-secondary-hover: #339DC7;
   --color-btn-next: #57b2fc;
   --color-btn-back: #57b2fc;
 
-  --color-grey-light: #E7E7E7;
+  --color-card-background: #f4f7f8;
+
+  --color-input-background: #e8eeef;
+  --color-input-text: #8a97a0;
+
+  --color-grey: #E7E7E7;
 
   --color-border-light: #eeeeef;
-  --border-radius: 1rem;
+  --border-radius: .35rem;
 
   --box-shadow-basic: 0 0 .5rem var(--color-border-light);
+  --box-shadow-input: 0 1px 0 rgba(0,0,0,0.03) inset;
 }
 
 html {

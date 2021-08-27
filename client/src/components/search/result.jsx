@@ -49,8 +49,8 @@ const Result = ({ result, index, focusMarkerOnMap }) => {
                             }
                         </div>
                         <div className="result__details--info">
-                            <div className="result__details--rating"><i className="fas fa-star"></i> {rating} •    </div>
-                            <div className="result__details--price">{price}</div>
+                            <div className="result__details--rating"><i className="fas fa-star"></i> {rating}</div>
+                            <div className="result__details--price"> • {price}</div>
                         </div>
                         <div className="result__details--services">
                             <div className="result__details--hours">

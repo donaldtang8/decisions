@@ -1,3 +1,31 @@
+$display: 'Dosis', sans-serif;
+$primary: 'Josefin Sans', sans-serif;
+$skinny: 'Roboto Condensed', sans-serif;
+$big-cursive: 'Fredoka One', cursive;
+
+%display {
+  font-family: $display;
+  font-weight: 400;
+}
+
+%primary {
+  font-family: $primary;
+  font-weight: 400;
+}
+
+%skinny {
+  font-family: $skinny;
+  font-weight: 400;
+}
+
+%big-cursive {
+  font-family: $big-cursive;
+}
+
+body {
+  @extend %primary;
+}
+
 a {
   text-decoration: none;
   color: var(--color-black);
