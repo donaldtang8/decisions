@@ -7,21 +7,25 @@ import { withRouter, useLocation } from 'react-router-dom';
 
 import { getResultsByParams } from '../../redux/actions/results';
 import { resetCategories, getCategories } from '../../redux/actions/categories';
+import { setPage, setOffset, setPerPage } from '../../redux/actions/pagination';
 
 import Result from './../../components/search/result';
 import Spinner from './../../components/spinner/spinner';
 
 import MapContainer from './../../components/maps/map-container';
 
+import ReactPaginate from 'react-paginate';
+
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-const Results = ({ getResultsByParams, resetCategories, getCategories, categories: { categories }, results, history }) => {
+const Results = ({ getResultsByParams, setPage, setOffset, setPerPage, results, history }) => {
     let query = useQuery();
 
     const[params, setParams] = useState({
-        limit: 50,
+        limit: 10,
+        offset: 0,
         location: query.get("location"),
         term: query.get("term"),
     });
@@ -55,7 +59,34 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
         }
     }
 
-    return results.loading ? <Spinner /> : (
+    // pagination
+    const[currentPage, setCurrentPage] = useState(0);
+    const[pageCount, setPageCount] = useState(null);
+    const[countPerPage, setCountPerPage] = useState(10);
+
+    useEffect(() => {
+        if (results.results.length > 0) {
+            setPageCount(Math.ceil(results.total / 10));
+        }
+    }, [results]);
+
+    const handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        setPage(selectedPage);
+        setOffset(selectedPage*10);
+        setPerPage(countPerPage);
+        setCurrentPage(selectedPage);
+        setParams({
+            ...params,
+            offset: selectedPage * 10
+        });
+    };
+
+    useEffect(() => {
+        getResultsByParams(params);
+    }, [params.offset]);
+
+    return (
         <div className="results__container">
             <div className="results__query">
                 <div className="results__filters">
@@ -81,21 +112,38 @@ const Results = ({ getResultsByParams, resetCategories, getCategories, categorie
             </div>
             <div className="results__wrapper">
                 {
-                    results.results.map((result, idx) => (
-                        <Result key={idx} result={result} index={idx} />
-                    ))
+                    results.loading ? <Spinner /> : (
+                        results.results.map((result, idx) => (
+                            <Result key={idx} result={result} index={idx} count={(currentPage * params.offset) + idx} />
+                        ))
+                    )
                 }
+                <ReactPaginate
+                    previousLabel={"<"}
+                    nextLabel={">"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination__container"}
+                    subContainerClassName={"pages pagination__container"}
+                    activeClassName={"active"}/>
             </div>
             <div className="results__map">
-                <MapContainer results={results.results} mode='multiple' />
+                {
+                    results.loading ? <Spinner /> : <MapContainer results={results.results} mode='multiple' />
+                }
             </div>   
         </div>
-        
     )
 }
 
 Results.propTypes = {
     getResultsByParams: PropTypes.func.isRequired,
+    setPage: PropTypes.func.isRequired,
+    setOffset: PropTypes.func.isRequired,
+    setPerPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -103,4 +151,4 @@ const mapStateToProps = state => ({
     categories: state.categories
 })
 
-export default connect(mapStateToProps, { getResultsByParams, resetCategories, getCategories })(withRouter(Results));
+export default connect(mapStateToProps, { getResultsByParams, resetCategories, getCategories, setPage, setOffset, setPerPage })(withRouter(Results));

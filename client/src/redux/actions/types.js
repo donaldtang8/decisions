@@ -13,3 +13,9 @@ export const CATEGORIES_ERROR = 'CATEGORIES_ERROR';
 // MAPS
 export const RESET_MAPS = 'RESET_MAPS';
 export const FOCUS_MARKER = 'FOCUS_MARKER';
+
+// PAGINATION
+export const RESET_PAGINATION = 'RESET_PAGINATION';
+export const SET_PAGE = 'SET_PAGE';
+export const SET_OFFSET = 'SET_OFFSET';
+export const SET_PERPAGE = 'SET_PERPAGE';

@@ -1,12 +1,13 @@
 input[type="text"],
 select {
-  border: none;
-  height: 4rem;
-  margin: 0;
-  outline: 0;
-  background-color: var(--color-input-background);
-  color: var(--color-input-text);
-  box-shadow: var(--box-shadow-input);
+    @extend %primary;
+    border: none;
+    height: 4rem;
+    margin: 0;
+    outline: 0;
+    background-color: var(--color-input-background);
+    color: var(--color-input-text);
+    box-shadow: var(--box-shadow-input);
 }
 
 input[type="radio"],
@@ -29,7 +30,12 @@ input[type="checkbox"] {
     }
 
     &__label {
-        @extend %skinny;
+        @extend %display;
+        font-weight: 600;
         margin-bottom: .5rem;
     }
+}
+
+::placeholder {
+    @extend %primary;
 }

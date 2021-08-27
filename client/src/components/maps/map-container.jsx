@@ -15,8 +15,6 @@ export class MapContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Map mounted");
-        console.log(this.props);
         this.loadMap();
     }
 
@@ -43,7 +41,6 @@ export class MapContainer extends React.Component {
 
     loadMap() {
         if (this.props && this.props.google) {
-            console.log("Loading map");
             // google is available
             const {google, mode, result, results} = this.props;
             const maps = google.maps;
@@ -61,7 +58,6 @@ export class MapContainer extends React.Component {
                 })
             } 
             else {
-                console.log("Loading map for multiple");
                 const zoom = 14;
                 mapConfig = Object.assign({}, {
                     center: { lat: results[0].coordinates.latitude, lng: results[0].coordinates.longitude },
@@ -74,7 +70,6 @@ export class MapContainer extends React.Component {
     }
 
     addMarkers() {
-        console.log("Adding markers");
         const map = this.map;
         const {google, mode, result, results} = this.props;
         const maps = google.maps;
@@ -104,7 +99,8 @@ export class MapContainer extends React.Component {
             this.state.markers.push(marker);
         } else {
             let bounds = new google.maps.LatLngBounds();
-            let i = 1;
+            const {page, perPage} = this.props.pagination;
+            let i = (page * perPage) + 1;
             for (let result of results) {
                 const position = { lat: result.coordinates.latitude, lng: result.coordinates.longitude };
                 bounds.extend(position);
@@ -171,7 +167,6 @@ export class MapContainer extends React.Component {
     }
 
     removeMarkers() {
-        console.log("Removing markers");
         for (let marker of this.state.markers) {
             marker.setMap(null);
         }
@@ -196,7 +191,6 @@ export class MapContainer extends React.Component {
     }
 
     recenterMap() {
-        console.log("Recentering map");
         const map = this.map;
         const curr = { lat: this.props.result.coordinates.latitude, lng: this.props.result.coordinates.longitude};
 
@@ -218,7 +212,8 @@ export class MapContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    mapsRedux: state.maps
+    mapsRedux: state.maps,
+    pagination: state.pagination
 })
 
 export default GoogleApiWrapper({
