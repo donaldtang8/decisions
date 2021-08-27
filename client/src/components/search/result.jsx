@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { focusMarkerOnMap } from '../../redux/actions/maps';
 
-const Result = ({ result, index, focusMarkerOnMap }) => {
+const Result = ({ result, index, count, pagination, focusMarkerOnMap }) => {
     const { alias, name, image_url, is_closed, url, review_count, categories, rating, coordinates, transactions, price, location, phone, display_phone } = result;
 
     // const[transactionsArr, setTransactionsArr] = useState([]);
@@ -40,7 +40,7 @@ const Result = ({ result, index, focusMarkerOnMap }) => {
                         <img src={image_url} alt={name} />
                     </div>
                     <div className="result__details">
-                        <div className="result__details--name">{index+1}. {name}</div>
+                        <div className="result__details--name">{(pagination.page * pagination.perPage) + index+1}. {name}</div>
                         <div className="result__details--categories">
                             {
                                 categories.map((category, idx) => (
@@ -83,4 +83,8 @@ Result.propTypes = {
     result: PropTypes.object.isRequired,
 }
 
-export default connect(null, { focusMarkerOnMap })(Result);
+const mapStateToProps = state => ({
+    pagination: state.pagination
+})
+
+export default connect(mapStateToProps, { focusMarkerOnMap })(Result);
