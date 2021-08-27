@@ -3,7 +3,7 @@ import {
     FOCUS_MARKER
  } from '../actions/types';
 
- const initialState = {
+const initialState = {
     selectedMarker: null
 };
 

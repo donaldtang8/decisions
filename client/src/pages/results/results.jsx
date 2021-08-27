@@ -72,8 +72,6 @@ const Results = ({ getResultsByParams, setPage, setOffset, setPerPage, results, 
 
     const handlePageClick = (e) => {
         const selectedPage = e.selected;
-        console.log(selectedPage + " page selected!");
-        console.log("Offset: " + selectedPage*10);
         setPage(selectedPage);
         setOffset(selectedPage*10);
         setPerPage(countPerPage);
