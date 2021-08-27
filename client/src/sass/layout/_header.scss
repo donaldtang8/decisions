@@ -33,3 +33,15 @@
         }
     }
 }
+
+@include respond(small-phone) {
+    .header {
+        &__container {
+            padding: 1rem 2rem;
+        }
+
+        &__nav {
+            margin-right: 0;
+        }
+    }
+}

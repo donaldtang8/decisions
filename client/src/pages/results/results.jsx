@@ -110,31 +110,33 @@ const Results = ({ getResultsByParams, setPage, setOffset, setPerPage, results, 
                 </div>
                 <button className="btn btn__primary btn__primary--small" onClick={handleQuerySubmit}>Apply</button>
             </div>
-            <div className="results__wrapper">
-                {
-                    results.loading ? <Spinner /> : (
-                        results.results.map((result, idx) => (
-                            <Result key={idx} result={result} index={idx} count={(currentPage * params.offset) + idx} />
-                        ))
-                    )
-                }
-                <ReactPaginate
-                    previousLabel={"<"}
-                    nextLabel={">"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={pageCount}
-                    pageRangeDisplayed={5}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination__container"}
-                    subContainerClassName={"pages pagination__container"}
-                    activeClassName={"active"}/>
-            </div>
-            <div className="results__map">
-                {
-                    results.loading ? <Spinner /> : <MapContainer results={results.results} mode='multiple' />
-                }
-            </div>   
+            <div className="results__content">
+                <div className="results__wrapper">
+                    {
+                        results.loading ? <Spinner /> : (
+                            results.results.map((result, idx) => (
+                                <Result key={idx} result={result} index={idx} count={(currentPage * params.offset) + idx} />
+                            ))
+                        )
+                    }
+                    <ReactPaginate
+                        previousLabel={"<"}
+                        nextLabel={">"}
+                        breakLabel={"..."}
+                        breakClassName={"break-me"}
+                        pageCount={pageCount}
+                        pageRangeDisplayed={5}
+                        onPageChange={handlePageClick}
+                        containerClassName={"pagination__container"}
+                        subContainerClassName={"pages pagination__container"}
+                        activeClassName={"active"}/>
+                </div>
+                <div className="results__map">
+                    {
+                        results.loading ? <Spinner /> : <MapContainer results={results.results} mode='multiple' />
+                    }
+                </div> 
+            </div>  
         </div>
     )
 }
